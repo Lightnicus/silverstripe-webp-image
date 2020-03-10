@@ -36,7 +36,7 @@ class FlysystemAssetStore extends SS_FlysystemAssetStore
 
     public function setFromLocalFile($path, $filename = null, $hash = null, $variant = null, $config = array())
     {
-        if ($filename) {
+        if ($filename && function_exists('imagewebp')) {
             if (isset($config['visibility']) && $config['visibility'] === self::VISIBILITY_PROTECTED) {
                 //todo: generate protected webp image
             } else {
