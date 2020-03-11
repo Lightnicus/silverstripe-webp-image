@@ -19,7 +19,7 @@ class FlysystemAssetStore extends SS_FlysystemAssetStore
     public function setFromString($data, $filename, $hash = null, $variant = null, $config = array())
     {
         $fileID = $this->getFileID($filename, $hash);
-        if ($this->getPublicFilesystem()->has($fileID)) {
+        if ($this->getPublicFilesystem()->has($fileID) && function_exists('imagewebp')) {
             if ($filename) {
                 $extension = substr(strrchr($filename, '.'), 1);
                 $tmp_file  = TEMP_PATH . DIRECTORY_SEPARATOR . 'raw_' . uniqid() . '.' . $extension;
